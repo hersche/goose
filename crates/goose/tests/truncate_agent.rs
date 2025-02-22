@@ -11,7 +11,7 @@ use goose::providers::{
     azure::AzureProvider, bedrock::BedrockProvider, ollama::OllamaProvider, openai::OpenAiProvider,
     openrouter::OpenRouterProvider,
 };
-use goose::providers::{google::GoogleProvider, groq::GroqProvider};
+use goose::providers::{google::GoogleProvider, python::PythonProvider, groq::GroqProvider};
 
 #[derive(Debug, PartialEq)]
 enum ProviderType {
@@ -21,6 +21,7 @@ enum ProviderType {
     Bedrock,
     Databricks,
     Google,
+    Python,
     Groq,
     Ollama,
     OpenRouter,
@@ -39,6 +40,7 @@ impl ProviderType {
             ProviderType::Bedrock => &["AWS_PROFILE", "AWS_REGION"],
             ProviderType::Databricks => &["DATABRICKS_HOST"],
             ProviderType::Google => &["GOOGLE_API_KEY"],
+            ProviderType::Python => &["GOOGLE_API_KEY"],
             ProviderType::Groq => &["GROQ_API_KEY"],
             ProviderType::Ollama => &[],
             ProviderType::OpenRouter => &["OPENROUTER_API_KEY"],
@@ -71,6 +73,7 @@ impl ProviderType {
             ProviderType::Bedrock => Box::new(BedrockProvider::from_env(model_config)?),
             ProviderType::Databricks => Box::new(DatabricksProvider::from_env(model_config)?),
             ProviderType::Google => Box::new(GoogleProvider::from_env(model_config)?),
+            ProviderType::Python => Box::new(PythonProvider::from_env(model_config)?),
             ProviderType::Groq => Box::new(GroqProvider::from_env(model_config)?),
             ProviderType::Ollama => Box::new(OllamaProvider::from_env(model_config)?),
             ProviderType::OpenRouter => Box::new(OpenRouterProvider::from_env(model_config)?),

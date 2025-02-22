@@ -4,7 +4,7 @@ use goose::message::{Message, MessageContent};
 use goose::providers::base::Provider;
 use goose::providers::errors::ProviderError;
 use goose::providers::{
-    anthropic, azure, bedrock, databricks, google, groq, ollama, openai, openrouter,
+    anthropic, azure, bedrock, databricks, google, python, groq, ollama, openai, openrouter,
 };
 use mcp_core::content::Content;
 use mcp_core::tool::Tool;

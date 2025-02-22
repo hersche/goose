@@ -7,6 +7,7 @@ pub mod errors;
 mod factory;
 pub mod formats;
 pub mod google;
+pub mod python;
 pub mod groq;
 pub mod oauth;
 pub mod ollama;

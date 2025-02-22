@@ -23,6 +23,12 @@
         "models": ["gemini-1.5-flash"],
         "required_keys": ["GOOGLE_API_KEY"]
     },
+    "python": {
+        "name": "Python",
+        "description": "Lorem ipsum",
+        "models": ["gemini-2.0-flash-thinking-exp"],
+        "required_keys": ["GOOGLE_API_KEY"]
+    },
     "grok": {
         "name": "Groq",
         "description": "Lorem ipsum",
