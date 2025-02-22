@@ -71,7 +71,6 @@ impl PythonProvider {
                 return Err(ProviderError::RequestFailed(format!("Dependency installation failed: {}", stderr)));
             }
         }
-        println!("Check for venv ended");
         Ok(())
     }
 
@@ -90,7 +89,7 @@ impl PythonProvider {
             args.push("--api-key".to_string());
             args.push(api_key);
         }
-        println!("execute {} with args {:?}", python_exe, args);
+        // println!("execute {} with args {:?}", python_exe, args);
         let output = Command::new(python_exe)
             .args(&args)
             .stdout(Stdio::piped())
@@ -144,7 +143,7 @@ impl Provider for PythonProvider {
             .map_err(|e| ProviderError::RequestFailed(e.to_string()))?;
         let response = self.execute(&prompt).await?;
         let message = response_to_message(response.clone())?;
-        println!("m3ssage {}", response);
+
         let usage = match get_usage(&response) {
             Ok(u) => u,
             Err(ProviderError::UsageError(e)) => {
@@ -154,6 +153,7 @@ impl Provider for PythonProvider {
             Err(e) => return Err(e),
         };
         let model = get_model(&response);
+        // println!("m3ssage {}", model);
         Ok((message, ProviderUsage::new(model, usage)))
     }
 }
